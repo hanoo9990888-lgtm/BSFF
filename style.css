@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* ===================== Start Overlay ===================== */
+.start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffe4ec, #ffd6e7, #ffe4ec);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.start-btn {
+    font-size: clamp(1.1rem, 4.5vw, 2rem);
+    color: #c40908;
+    padding: 16px 36px;
+    border: 2px solid #c40908;
+    border-radius: 50px;
+    font-family: Georgia, serif;
+    letter-spacing: 2px;
+    background: rgba(255, 255, 255, 0.65);
+    animation: pulse 1.6s ease-in-out infinite;
+    user-select: none;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1);    box-shadow: 0 0  0px rgba(196,9,8,0.2); }
+    50%       { transform: scale(1.06); box-shadow: 0 0 22px rgba(196,9,8,0.3); }
+}
+
+/* ===================== Container ===================== */
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ===================== Body Left (GIF) ===================== */
+.body_left {
+    width: clamp(100px, 18vw, 300px);
+    height: clamp(100px, 18vw, 300px);
+    left: 0;
+    bottom: 110px;
+    position: absolute;
+    z-index: 98;
+}
+
+.body_left img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ===================== Love / Heart Container ===================== */
+.container .love {
+    width: 520px;
+    height: 440px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    margin: -220px 0 0 -260px;
+    transform-origin: center center;
+}
+
+/* Scale heart on smaller screens */
+@media (max-width: 580px) {
+    .container .love {
+        transform: scale(0.65);
+    }
+}
+
+@media (max-width: 400px) {
+    .container .love {
+        transform: scale(0.47);
+    }
+}
+
+.love .block {
+    right: 0;
+    position: absolute;
+    visibility: hidden;
+}
+
+.love .block div {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background: url("heart.png") no-repeat;
+    background-size: contain;
+    box-sizing: border-box;
+}
+
+/* ===================== Message Text ===================== */
+.message-text {
+    position: fixed;
+    bottom: 16%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1rem, 3.8vw, 2.2rem);
+    color: #c40908;
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 3px;
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    text-shadow: 0 2px 12px rgba(196, 9, 8, 0.35);
+    transition: opacity 1.8s ease-in;
+}
+
+.message-text.show {
+    opacity: 1;
+}
+
+@media (max-width: 420px) {
+    .message-text {
+        white-space: normal;
+        width: 88%;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+}
+
+/* ===================== Footer ===================== */
+@keyframes expand-border {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+
+.footer {
+    bottom: 30px;
+    position: relative;
+    z-index: 99;
+}
+
+/* Animations are PAUSED until user clicks start */
+.footer .border .border-top {
+    border-top: 3px solid black;
+    transform-origin: left center;
+    animation: expand-border 12s linear;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+}
+
+.footer.active .border .border-top {
+    animation-play-state: running;
+}
+
+.footer .border .border-bottom {
+    float: right;
+    border-top: 3px solid red;
+    transform-origin: right center;
+    animation: expand-border 7s linear 12s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+}
+
+.footer.active .border .border-bottom {
+    animation-play-state: running;
+}
+
+.footer .copyright {
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: -30px;
+    text-align: center;
+}
+
+.copyright div {
+    width: 30%;
+    line-height: 30px;
+    display: inline-block;
+}
+
+.copyright div span {
+    color: dimgray;
+}
